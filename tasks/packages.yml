@@ -1,0 +1,9 @@
+---
+
+- name: packages dependencies
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - zsh
+  sudo: yes

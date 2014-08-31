@@ -1,0 +1,40 @@
+---
+
+- name: clone
+  git: >
+    repo=https://github.com/robbyrussell/oh-my-zsh.git
+    dest=/usr/local/share/oh-my-zsh
+    update=no
+  sudo: yes
+
+- name: template users root
+  template: >
+    src=zshrc.j2
+    dest=/root/.zshrc
+  with_dict: elao_ohmyzsh_users
+  when: item.key == 'root'
+  sudo: yes
+
+- name: template users
+  template: >
+    src=zshrc.j2
+    dest=/home/{{ item.key }}/.zshrc
+  with_dict: elao_ohmyzsh_users
+  when: item.key != 'root'
+  sudo: yes
+
+- name: shell users
+  user: >
+    name={{ item.key }}
+    shell=/bin/zsh
+  with_dict: elao_ohmyzsh_users
+  sudo: yes
+
+#- name: install
+#  shell: >
+#    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#    creates=/usr/local/bin/composer
+#  sudo: yes
+
+# # Oh-my-zsh custom
+#echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' > ~/.oh-my-zsh/custom/composer.zsh
