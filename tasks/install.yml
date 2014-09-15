@@ -29,12 +29,3 @@
     shell=/bin/zsh
   with_dict: elao_ohmyzsh_users
   sudo: yes
-
-#- name: install
-#  shell: >
-#    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#    creates=/usr/local/bin/composer
-#  sudo: yes
-
-# # Oh-my-zsh custom
-#echo 'export PATH=$HOME/.composer/vendor/bin:$PATH' > ~/.oh-my-zsh/custom/composer.zsh
