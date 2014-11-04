@@ -2,6 +2,7 @@
 
 dependencies:
 
+  - { role: elao.zsh }
   - { role: elao.git }
 
 galaxy_info:
